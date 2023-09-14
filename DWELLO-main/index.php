@@ -5,57 +5,58 @@ if(isset($_GET['filter'])){
     $key = $_GET['filter'];
     $sql = "SELECT * FROM produtos where nome LIKE '$key%'";
 }
-elseif(isset($_GET['hasSubmitted'])){
-$preco_l = $_GET['preco_l'];
-$preco_r = $_GET['preco_r'];
-$tamanho_l = $_GET['tamanho_l'];
-$tamanho_r = $_GET['tamanho_r'];
-$cor = $_GET['cor'];
-$material = $_GET['material'];
-$peso_l = $_GET['peso_l'];
-$peso_r = $_GET['peso_r'];
-
-$sql = "SELECT * FROM produtos";
-
-if (!empty($preco_l) && !empty($preco_r)) {
-    $sql .= " WHERE valor BETWEEN $preco_l AND $preco_r";
-}
-
-if (!empty($tamanho_l) && !empty($tamanho_r)) {
-    if (strpos($sql, 'WHERE') !== false) {
-        $sql .= " AND tamanho BETWEEN $tamanho_l AND $tamanho_r";
-    } else {
-        $sql .= " WHERE tamanho BETWEEN $tamanho_l AND $tamanho_r";
-    }
-}
-
-if (!empty($cor)) {
-    if (strpos($sql, 'WHERE') !== false) {
-        $sql .= " AND cor = '$cor'";
-    } else {
-        $sql .= " WHERE cor = '$cor'";
-    }
-}
-
-if (!empty($material)) {
-    if (strpos($sql, 'WHERE') !== false) {
-        $sql .= " AND material = '$material'";
-    } else {
-        $sql .= " WHERE material = '$material'";
-    }
-}
-
-if (!empty($peso_l) && !empty($peso_r)) {
-    if (strpos($sql, 'WHERE') !== false) {
-        $sql .= " AND peso BETWEEN $peso_l AND $peso_r";
-    } else {
-        $sql .= " WHERE peso BETWEEN $peso_l AND $peso_r";
-    }
-}
-}
 else{
     $sql = "SELECT * FROM produtos";
 }
+
+elseif(isset($_GET['hasSubmitted'])){
+    $preco_l = $_GET['preco_l'];
+    $preco_r = $_GET['preco_r'];
+    $tamanho_l = $_GET['tamanho_l'];
+    $tamanho_r = $_GET['tamanho_r'];
+    $cor = $_GET['cor'];
+    $material = $_GET['material'];
+    $peso_l = $_GET['peso_l'];
+    $peso_r = $_GET['peso_r'];
+    
+    $sql = "SELECT * FROM produtos";
+    
+    if (!empty($preco_l) && !empty($preco_r)) {
+        $sql .= " WHERE valor BETWEEN $preco_l AND $preco_r";
+    }
+    
+    if (!empty($tamanho_l) && !empty($tamanho_r)) {
+        if (strpos($sql, 'WHERE') !== false) {
+            $sql .= " AND tamanho BETWEEN $tamanho_l AND $tamanho_r";
+        } else {
+            $sql .= " WHERE tamanho BETWEEN $tamanho_l AND $tamanho_r";
+        }
+    }
+    
+    if (!empty($cor)) {
+        if (strpos($sql, 'WHERE') !== false) {
+            $sql .= " AND cor = '$cor'";
+        } else {
+            $sql .= " WHERE cor = '$cor'";
+        }
+    }
+    
+    if (!empty($material)) {
+        if (strpos($sql, 'WHERE') !== false) {
+            $sql .= " AND material = '$material'";
+        } else {
+            $sql .= " WHERE material = '$material'";
+        }
+    }
+    
+    if (!empty($peso_l) && !empty($peso_r)) {
+        if (strpos($sql, 'WHERE') !== false) {
+            $sql .= " AND peso BETWEEN $peso_l AND $peso_r";
+        } else {
+            $sql .= " WHERE peso BETWEEN $peso_l AND $peso_r";
+        }
+    }
+    }
 
 $result = mysqli_query($conn, $sql);
 
