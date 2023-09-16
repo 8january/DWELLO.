@@ -10,9 +10,11 @@
         $tamanho = $_POST['tamanho'];
         $formato = $_POST['formato'];
         $peso = $_POST['peso'];
-        $qnt_estoque = $_POST['qnt_estoque'];
+        $qnt_estoque = intval($_POST['qnt_estoque']);
+        $qnt_add = intval($_POST['qnt_add']);
+        $estoque = $qnt_estoque + $qnt_add;
 
-        $sql = "UPDATE produtos SET qnt_estoque = '$qnt_estoque' WHERE codigo = '$codigo'";
+        $sql = "UPDATE produtos SET qnt_estoque = '$estoque' WHERE codigo = '$codigo'";
         echo $sql; 
         $result = mysqli_query($conn, $sql);
 
@@ -80,7 +82,11 @@
             </div>
             <div>
                 <label for="qnt_estoque">Quantidade no estoque</label>
-                <input type="number" maxlength="30" value="<?php echo $row['qnt_estoque']?>" name="qnt_estoque">
+                <input type="number" maxlength="30" value="<?php echo $row['qnt_estoque']?>" name="qnt_estoque" readonly>
+            </div>
+            <div>
+                <label for="qnt_add">Quantidade a ser adicionada</label>
+                <input type="number" maxlength="30" name="qnt_add" min='1'>
             </div>
             <div style="margin-top: 2%;">
                 <input class="btn btn-outline-danger btn-lg" type="submit" value="Atualizar Mercadoria">

@@ -9,7 +9,7 @@ else{
     $sql = "SELECT * FROM produtos";
 }
 
-elseif(isset($_GET['hasSubmitted'])){
+if(isset($_GET['hasSubmitted'])){
     $preco_l = $_GET['preco_l'];
     $preco_r = $_GET['preco_r'];
     $tamanho_l = $_GET['tamanho_l'];

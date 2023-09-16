@@ -86,7 +86,7 @@
             </div>
             <div>
                 <label for="qnt_venda">Quantidade a ser vendida</label>
-                <input type="number" maxlength="30" name="qnt_venda"> <!-- CORRIGIR AQUI -->
+                <input type="number" maxlength="30" name="qnt_venda" min='1' max="<?php echo $row['qnt_estoque']?>">
             </div>
 
             <div style="margin-top: 2%;">
