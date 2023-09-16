@@ -82,7 +82,6 @@ if (!$AEL_result) {
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
 
-    <!--<div class="p-3 mb-2 bg-warning text-dark">-->
     <div class="container-xl" style="margin-top: 2%;">
 
     <nav class="navbar bg-body-tertiary">
@@ -96,30 +95,34 @@ if (!$AEL_result) {
             <button class="btn btn-outline-dark" type="submit"> Pesquisar </button>
         </form>
     </div>
-    <div class="imagem.d-flex" style="position:relative; margin-top: 1%; width: 100%; height: 100%; margin-bottom: 1%;">
-        <img class="d-flex.align-self-center" src="assets/DWELLO-image-4.jpg" alt="DWELLO STORE" height="100%" width="100%">
+    <div class="imagem d-flex" style="position:relative; margin-top: 1%; width: 100%; height: 100%; margin-bottom: 1%;">
+        <img class="d-flex align-self-center" src="assets/DWELLO-image-4.jpg" alt="DWELLO STORE" height="100%" width="100%">
         <div class="texto-dwello" style="position:absolute; background-color: rgba(0, 0, 0, 0.5); color: #fff; top:0%; width:100%; height: 100%">
-            <h1 style="font-size: 320%; margin-top:3%; margin-left: 3%;">Controle de Estoque</h1>
+            <h1 style="font-size: 2.255rem; margin-top:3%; margin-left: 3%; padding:0.2rem;">Controle de Estoque</h1>
         </div>
     </div>
     </nav>
-
-        <ul class="nav nav-tabs bg-body-tertiary">
+    <nav>
+    <ul class="nav nav-tabs bg-body-tertiary justify-content-center flex-nowrap">
+        <li class="nav-item">   
+            <a class="nav-link active" href="#">Visualizar estoque</a>
+        </li>
         <li class="nav-item">
-            <a class="nav-link active" href="#"> Visualizar estoque </a>
-        <li class="nav-item">
-            <a class="nav-link" href="CRUD/create.php"> Registrar produto </a>
+            <a class="nav-link" href="CRUD/create.php">Registrar produto</a>
         </li>
         <li class="nav-item">
             <button class="nav-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-  Filtrar estoque
-</button>
+                Filtrar estoque
+            </button>
         </li>
-        </ul>
+    </ul>
+</nav>
+
+
 
 
     <div class="table-responsive-sm">
-    <table class="table table-hover shadow-sm   ">
+    <table class="table table-hover shadow">
         <tr>
             <th>Nome</th>
             <th>Valor</th>
@@ -131,20 +134,23 @@ if (!$AEL_result) {
         </tr>
         <?php while ($AEL_row = mysqli_fetch_assoc($AEL_result)): ?>
             <tr>
-                <td><?php echo $AEL_row['nome']; ?></td>
-                <td>R$ <?php echo $AEL_row['valor']; ?></td>
-                <td><?php echo $AEL_row['cor']; ?></td>
-                <td><?php echo $AEL_row['material']; ?></td>
-                <td><?php echo $AEL_row['formato']; ?></td>
-                <td><?php echo $AEL_row['qnt_estoque']; ?></td>
-                <td class='d-grid gap-2 d-md-block'>
-                        <a href="Inventory/sell.php?codigo=<?php echo $AEL_row['codigo']; ?>"><button class="btn btn-success btn-sm">Vender</button></a>
-                        <a href="Inventory/add.php?codigo=<?php echo $AEL_row['codigo']; ?>"><button class="btn btn-secondary btn-sm">Adicionar</button></a>
-                        <a href="CRUD/read.php?codigo=<?php echo $AEL_row['codigo']; ?>"><button class="btn btn-primary btn-sm">Detalhes</button></a>
-                        <a href="CRUD/update.php?codigo=<?php echo $AEL_row['codigo']; ?>"><button class="btn btn-warning btn-sm">Editar</button></a>
-                        <a href="CRUD/delete.php?codigo=<?php echo $AEL_row['codigo']; ?>"><button type="button" class="btn btn-outline-danger btn-sm">Excluir</button></a>
-                </td>
-            </tr>
+    <td><?php echo $AEL_row['nome']; ?></td>
+    <td>R$ <?php echo $AEL_row['valor']; ?></td>
+    <td><?php echo $AEL_row['cor']; ?></td>
+    <td><?php echo $AEL_row['material']; ?></td>
+    <td><?php echo $AEL_row['formato']; ?></td>
+    <td><?php echo $AEL_row['qnt_estoque']; ?></td>
+    <td class='d-grid gap-2 d-md-block'>
+        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                <a href="Inventory/sell.php?codigo=<?php echo $AEL_row['codigo']; ?>" class="btn btn-success btn-sm">Vender</a>
+                <a href="Inventory/add.php?codigo=<?php echo $AEL_row['codigo']; ?>" class="btn btn-secondary btn-sm">Adicionar</a>
+                <a href="CRUD/read.php?codigo=<?php echo $AEL_row['codigo']; ?>"     class="btn btn-primary btn-sm">Detalhes</a>
+                <a href="CRUD/update.php?codigo=<?php echo $AEL_row['codigo']; ?>"   class="btn btn-warning btn-sm">Editar</a>
+                <a href="CRUD/delete.php?codigo=<?php echo $AEL_row['codigo']; ?>"   class="btn btn-outline-danger btn-sm">Excluir</a>
+        </div>
+    </td>
+</tr>
+
         <?php endwhile; ?>
     </table>
     </div>
@@ -158,14 +164,14 @@ if (!$AEL_result) {
         <div class="offcanvas-body">
             <form action="" method='GET' class='container'>
 
-<div class="row row-cols-4 text-left align-items-center g-3 p-2">
+<div class="row row-cols-4 text-left align-items-center p-1">
     <div class="col"><label for="" class='form-label'>Preço:</label></div>
     <div class="col"><input type="number" name="preco_l" id="" placeholder='0.00' class='form-control form-control-sm' step="any"></div>
     <div class="col"><label for="" class='form-label'>  entre </label></div>
     <div class="col"><input type="number" name="preco_r" id="" placeholder='0.00' class='form-control form-control-sm' step="any"></div>
 </div>
 
-<div class="row row-cols-4 text-left align-items-center g-3 p-2">
+<div class="row row-cols-4 text-left align-items-center p-1">
     <div class="col"><label for="" class='form-label'>Cor:</label></div>
     <div class="col"><input type="text" name="cor" id="" placeholder='branco' class='form-control form-control-sm'></div>
     <div class="col"><label for="" class='form-label'>Material:</label></div>
@@ -173,14 +179,14 @@ if (!$AEL_result) {
 </div>
 
 
-<div class="row row-cols-4 text-left align-items-center g-3 p-2">
+<div class="row row-cols-4 text-left align-items-center p-1">
     <div class="col"><label for="" class='form-label'>Peso:</label></div>
     <div class="col"><input type="number" name="peso_l" id="" placeholder='0.00' class='form-control form-control-sm' step="any"></div>
     <div class="col"><label for="" class='form-label'>  entre </label></div>
     <div class="col"><input type="number" name="peso_r" id="" placeholder='0.00' class='form-control form-control-sm' step="any"></div>
 </div>
 
-<div class="row row-cols-4 text-left align-items-center g-3 p-2">
+<div class="row row-cols-4 text-left align-items-center p-1">
     <div class="col"><label for="" class='form-label'>Estoque:</label></div>
     <div class="col"><input type="number" name="estoque_l" id="" placeholder='0.00' class='form-control form-control-sm' step="any"></div>
     <div class="col"><label for="" class='form-label'>  entre </label></div>

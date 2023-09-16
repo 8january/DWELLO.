@@ -2,36 +2,36 @@
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
         include "../conexao.php";
 
-        $codigo = $_POST['codigo'];
-        $nome = $_POST['nome'];
-        $valor = $_POST['valor'];
-        $cor = $_POST['cor'];
-        $material = $_POST['material'];
-        $tamanho = $_POST['tamanho'];
-        $formato = $_POST['formato'];
-        $peso = $_POST['peso'];
-        $qnt_estoque = intval($_POST['qnt_estoque']);
-        $qnt_add = intval($_POST['qnt_add']);
-        $estoque = $qnt_estoque + $qnt_add;
+        $AEL_codigo = $_POST['codigo'];
+        $AEL_nome = $_POST['nome'];
+        $AEL_valor = $_POST['valor'];
+        $AEL_cor = $_POST['cor'];
+        $AEL_material = $_POST['material'];
+        $AEL_tamanho = $_POST['tamanho'];
+        $AEL_formato = $_POST['formato'];
+        $AEL_peso = $_POST['peso'];
+        $AEL_qnt_estoque = intval($_POST['qnt_estoque']);
+        $AEL_qnt_add = intval($_POST['qnt_add']);
+        $AEL_estoque = $AEL_qnt_estoque + $AEL_qnt_add;
 
-        $sql = "UPDATE produtos SET qnt_estoque = '$estoque' WHERE codigo = '$codigo'";
-        echo $sql; 
-        $result = mysqli_query($conn, $sql);
+        $AEL_sql = "UPDATE produtos SET qnt_estoque = '$AEL_estoque' WHERE codigo = '$AEL_codigo'";
+        echo $AEL_sql; 
+        $AEL_result = mysqli_query($AEL_conn, $AEL_sql);
 
-        if($result){
+        if($AEL_result){
         header('Location: ../index.php');
         exit();
         }else{
             echo "Erro ao atualizar dados do produto";
-            die(mysqli_error($conn));
+            die(mysqli_error($AEL_conn));
         }
     }elseif(isset($_GET['codigo'])){
         include "../conexao.php";
 
-        $codigo = $_GET['codigo'];
-        $sql = "SELECT * FROM produtos WHERE codigo = $codigo";
-        $result = mysqli_query($conn, $sql);
-        $row = mysqli_fetch_assoc($result);
+        $AEL_codigo = $_GET['codigo'];
+        $AEL_sql = "SELECT * FROM produtos WHERE codigo = $AEL_codigo";
+        $AEL_result = mysqli_query($AEL_conn, $AEL_sql);
+        $AEL_row = mysqli_fetch_assoc($AEL_result);
     }
 ?>
 
@@ -44,49 +44,49 @@
     <title>Editar Mercadoria</title>
 </head>
 <body class="p-3 mb-2 bg-warning text-dark">
-    <div class="container p-3 mb-2 bg-light text-dark" style="border-radius: 10px;">
-        <?php if($row): ?>
-            <h2>Atualizar estoque de mercadoria <?php echo $row['nome']?></h2>
+    <div class="container p-3 mb-2 bg-light text-dark grid text-left" style="border-radius: 10px;">
+        <?php if($AEL_row): ?>
+            <h2>Atualizar estoque de mercadoria: <?php echo $AEL_row['nome']?></h2>
             <form action="" method="POST" style="font-size: 20px; font-weight:bold;">
-            <div>
-                <label for="codigo">Código</label>
-                <input type="text" type="hidden" name="codigo" value="<?php echo $row['codigo']?>" readonly>
+            <div class='row p-2'>
+                <label for="codigo" class="col-6 col-sm-4">Código:</label>
+                <input type="text" type="hidden" name="codigo" value="<?php echo $AEL_row['codigo']?>" class="col-6 col-sm-3" readonly>
             </div>
-            <div>
-                <label for="nome" > Nome</label>
-                <input maxlength="40" type="text" value="<?php echo $row['nome']?>" name="nome" disabled>
+            <div class='row p-2'>
+                <label for="nome"  class="col-6 col-sm-4"> Nome:</label>
+                <input maxlength="40" type="text" value="<?php echo $AEL_row['nome']?>" name="nome" class="col-6 col-sm-3" disabled>
             </div>
-            <div>
-                <label for="valor">Valor</label>
-                <input type="text" maxlength="30" value="<?php echo $row['valor']?>" name="valor" disabled>
+            <div class='row p-2'>
+                <label for="valor" class="col-6 col-sm-4">Valor:</label>
+                <input type="text" maxlength="30" value="<?php echo $AEL_row['valor']?>" name="valor"  class="col-6 col-sm-3" disabled>
             </div>
-            <div>
-                <label for="cor">Cor</label>
-                <input type="text" maxlength="30" value="<?php echo $row['cor']?>" name="cor" disabled>
+            <div class='row p-2'>
+                <label for="cor" class="col-6 col-sm-4">Cor:</label>
+                <input type="text" maxlength="30" value="<?php echo $AEL_row['cor']?>" name="cor" class="col-6 col-sm-3" disabled>
             </div>
-            <div>
-                <label for="material">Material</label>
-                <input type="text" maxlength="30" value="<?php echo $row['material']?>" name="material" disabled>
+            <div class='row p-2'>
+                <label for="material" class="col-6 col-sm-4">Material:</label>
+                <input type="text" maxlength="30" value="<?php echo $AEL_row['material']?>" name="material" class="col-6 col-sm-3" disabled>
             </div>
-            <div>
-                <label for="tamanho">Tamanho</label>
-                <input type="text" maxlength="30" value="<?php echo $row['tamanho']?>" name="tamanho" disabled>
+            <div class='row p-2'>
+                <label for="tamanho" class="col-6 col-sm-4">Tamanho:</label>
+                <input type="text" maxlength="30" value="<?php echo $AEL_row['tamanho']?>" name="tamanho"class="col-6 col-sm-3"  disabled>
             </div>
-            <div>
-                <label for="formato">Formato</label>
-                <input type="text" maxlength="30" value="<?php echo $row['formato']?>" name="formato" disabled>
+            <div class='row p-2'>
+                <label for="formato" class="col-6 col-sm-4">Formato:</label>
+                <input type="text" maxlength="30" value="<?php echo $AEL_row['formato']?>" name="formato" class="col-6 col-sm-3" disabled>
             </div>
-            <div>
-                <label for="peso">Peso</label>
-                <input type="text" maxlength="30" value="<?php echo $row['peso']?>" name="peso" disabled>
+            <div class='row p-2'>
+                <label for="peso" class="col-6 col-sm-4">Peso:</label>
+                <input type="text" maxlength="30" value="<?php echo $AEL_row['peso']?>" name="peso" class="col-6 col-sm-3" disabled>
             </div>
-            <div>
-                <label for="qnt_estoque">Quantidade no estoque</label>
-                <input type="number" maxlength="30" value="<?php echo $row['qnt_estoque']?>" name="qnt_estoque" readonly>
+            <div class='row p-2'>
+                <label for="qnt_estoque" class="col-6 col-sm-4">Quantidade no estoque:</label>
+                <input type="number" maxlength="30" value="<?php echo $AEL_row['qnt_estoque']?>" name="qnt_estoque" class="col-6 col-sm-3" readonly>
             </div>
-            <div>
-                <label for="qnt_add">Quantidade a ser adicionada</label>
-                <input type="number" maxlength="30" name="qnt_add" min='1'>
+            <div class='row p-2'>
+                <label for="qnt_add" class="col-6 col-sm-4">Quantidade a ser adicionada:</label>
+                <input type="number" maxlength="30" name="qnt_add" min='1' class="col-6 col-sm-3">
             </div>
             <div style="margin-top: 2%;">
                 <input class="btn btn-outline-danger btn-lg" type="submit" value="Atualizar Mercadoria">
