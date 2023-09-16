@@ -1,4 +1,14 @@
 <?php
+
+/*
+TURMA:
+    I2A.
+EQUIPE: 
+    Ângelo Gabriel Sicssu da Silva.
+    Esther Vitória Ferreira Leão.
+    Leonardo Brandão do Amarante.
+*/
+
     $AEL_host = "localhost";
     $AEL_username = "root";
     $AEL_password = "";

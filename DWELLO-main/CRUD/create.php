@@ -1,4 +1,14 @@
 <?php
+/*
+TURMA:
+    I2A.
+EQUIPE: 
+    Ângelo Gabriel Sicssu da Silva.
+    Esther Vitória Ferreira Leão.
+    Leonardo Brandão do Amarante.
+*/
+
+
     include "../conexao.php";
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $AEL_nome = $_POST['nome'];
